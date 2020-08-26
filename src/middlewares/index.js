@@ -1,15 +1,4 @@
-type Code = '-1' | 200 | 401 | 500 | 10001
-interface IResultData {
-  code: Code
-  success: boolean
-  message: string
-  data: any
-}
-
-export interface IUtilFn {
-  resuccess: (data: any) => IResultData
-  refail: (message?: string, code?: Code, data?: any) => IResultData
-}
+import { DefaultContext, Next } from 'koa'
 
 const codeMap = {
   '-1': 'fail',
@@ -19,7 +8,7 @@ const codeMap = {
   10001: 'params error',
 }
 
-const utilFn: IUtilFn = {
+const utilFn = {
   resuccess(data) {
     return {
       code: 200,

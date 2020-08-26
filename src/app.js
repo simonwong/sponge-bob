@@ -1,7 +1,7 @@
-import * as Koa from 'koa'
+import Koa from 'koa'
 
-import * as bodyParser from 'koa-bodyparser'
-import * as logger from 'koa-logger'
+import bodyParser from 'koa-bodyparser'
+import logger from 'koa-logger'
 // const cors = require('koa2-cors')
 
 import './models/mongoose'
@@ -10,7 +10,8 @@ import routerConfig from './routerConfig'
 
 const app = new Koa()
 
-// 将POST请求的formData数据解析到ctx.requset.body中
+var a = 1;
+
 app
   .use(bodyParser())
   .use(logger())

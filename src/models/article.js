@@ -1,5 +1,5 @@
-import * as mongoose from 'mongoose'
-import * as moment from 'moment'
+import mongoose from 'mongoose'
+import moment from 'moment'
 
 /**
  * article 表结构
@@ -13,7 +13,7 @@ const articleSchema = new mongoose.Schema({
   createDate: { // 日期
     type: Date,
     default: Date.now,
-    get: (v: Date) => moment(v).format('YYYY-MM-DD HH:mm'),
+    get: (v) => moment(v).format('YYYY-MM-DD HH:mm'),
   },
 })
 articleSchema.set('toJSON', { getters: true })
