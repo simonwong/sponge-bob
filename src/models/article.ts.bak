@@ -1,27 +1,25 @@
-import mongoose from 'mongoose'
-import moment from 'moment'
-
 /**
  * article 表结构
  */
-const articleSchema = new mongoose.Schema({
-  title: String, // 标题
-  author: String, // 作者
-  body: String, // 内容
-  type: Number, // 文章大类，前端文章 = 1，生活随笔 = 2
-  tags: String, // 所属标签
-  createDate: { // 日期
-    type: Date,
-    default: Date.now,
-    get: (v) => moment(v).format('YYYY-MM-DD HH:mm'),
-  },
-})
-articleSchema.set('toJSON', { getters: true })
+// const articleSchema = new mongoose.Schema({
+//   title: String, // 标题
+//   author: String, // 作者
+//   body: String, // 内容
+//   type: Number, // 文章大类，前端文章 = 1，生活随笔 = 2
+//   tags: String, // 所属标签
+//   createDate: {
+//     // 日期
+//     type: Date,
+//     default: Date.now,
+//     // get: v => moment(v).format('YYYY-MM-DD HH:mm'),
+//   },
+// })
+// articleSchema.set('toJSON', { getters: true })
 
-/**
- * 模型
- */
-export default mongoose.model('Article', articleSchema)
+// /**
+//  * 模型
+//  */
+// export default mongoose.model('Article', articleSchema)
 
 // import {
 //     Schema, Document, Model, model,
