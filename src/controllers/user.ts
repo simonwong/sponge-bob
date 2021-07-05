@@ -2,10 +2,16 @@ import { Context } from 'koa'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import config from 'config'
+import Joi from 'joi'
 import { UserCreationAttributes, UserLoginAttributes } from '../models/user'
 import { UserService } from '../services/user'
 
 const { secret, expire } = config.get('jwt')
+
+const loginValidateSchema = Joi.object({
+  email: Joi.string().email().required(),
+  password: Joi.string().required(),
+})
 
 class UserController {
   /**
@@ -57,6 +63,8 @@ class UserController {
    * 用户登录
    */
   static async login(ctx: Context) {
+    await ctx.joi.validateBody(loginValidateSchema)
+
     const { email, password } = ctx.request.body as UserLoginAttributes
     const user = await UserService.findByEmail(email)
 

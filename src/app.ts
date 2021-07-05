@@ -14,6 +14,7 @@ app
   .use(logger())
   .use(middleware.util)
   .use(middleware.jwt)
+  .use(middleware.joiValidate)
   .use(routerConfig.routes())
   .use(routerConfig.allowedMethods())
 

@@ -31,7 +31,9 @@ export const User = sequelize.define<UserInstance>('user', {
     allowNull: false,
     unique: true,
     validate: {
-      isEmail: true,
+      isEmail: {
+        msg: '邮箱格式错误',
+      },
     },
   },
   userName: {
@@ -39,11 +41,22 @@ export const User = sequelize.define<UserInstance>('user', {
     allowNull: false,
     unique: true,
     validate: {
-      len: [2, 10],
+      notNull: {
+        msg: '请输入用户名',
+      },
+      len: {
+        args: [2, 10],
+        msg: '用户名长度限制 2 - 10 个字符',
+      },
     },
   },
   password: {
     type: DataTypes.STRING,
+    validate: {
+      notNull: {
+        msg: '请输入密码',
+      },
+    },
     allowNull: false,
   },
   token: {

@@ -1,6 +1,6 @@
 import { User, UserCreationAttributes } from '../models/user'
 
-const attributesExclude = ['password', 'token']
+export const attributesExclude = ['password', 'token']
 
 export class UserService {
   static async findAll() {

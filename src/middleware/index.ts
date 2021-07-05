@@ -31,7 +31,11 @@ export const utilFn = {
   },
 }
 
-const allowNoTokenPaths = ['/api/user/register', '/api/user/login']
+const allowNoTokenPaths = [
+  '/api/user/register',
+  '/api/user/login',
+  '/api/article/all',
+]
 const { secret } = config.get('jwt')
 
 class MiddleWare {
@@ -42,6 +46,15 @@ class MiddleWare {
     // 从而允许服务器操作员查找相应的日志语句（而不必依赖时间戳，IP等）
     // ctx.set('X-Request-Id', ctx.req.id)
     ctx.util = utilFn
+    return next()
+  }
+
+  static joiValidate(ctx: Context, next: Next) {
+    ctx.joi = {
+      validateBody: async (schema: any) => {
+        await schema.validateAsync(ctx.request.body)
+      },
+    }
     return next()
   }
 
