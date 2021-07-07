@@ -8,7 +8,7 @@ const codeMap = {
   401: 'token expired',
   500: 'server error',
   10001: 'params error',
-}
+} as const
 
 type Code = keyof typeof codeMap
 
